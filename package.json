@@ -1,0 +1,17 @@
+{
+  "name": "proyecto-final-auth-hibrido",
+  "version": "1.0.0",
+  "description": "Sistema de autenticacion hibrido con Node.js - Proyecto Final Backend II",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
