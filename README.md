@@ -8,7 +8,7 @@ Sistema de autenticación híbrido con Node.js (Express + Mongoose).
 npm install
 ```
 
-Copiar `.env.example` a `.env` y completar las variables.
+Copiar `.env.example` a `.env` y completar las variables. En `MONGODB_URI` va la cadena de conexión de MongoDB Atlas.
 
 ## Ejecutar
 
