@@ -7,6 +7,7 @@ const config = {
   mongoUri: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1h',
+  sessionSecret: process.env.SESSION_SECRET,
 };
 
 module.exports = { config };
