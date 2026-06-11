@@ -1,6 +1,6 @@
 const passport = require('../config/passport');
 const User = require('../models/user.model');
-const { createAccessToken, getAuthCookieOptions } = require('../utils/auth');
+const { createAccessToken, getAuthCookieOptions, getClearCookieOptions } = require('../utils/auth');
 
 // registro de un usuario nuevo
 const register = async (req, res) => {
@@ -68,4 +68,19 @@ const githubCallback = (req, res) => {
     });
 };
 
-module.exports = { register, login, githubCallback };
+// logout: cierro la sesion de passport, la destruyo y borro la cookie del token
+const logout = (req, res) => {
+  req.logout((err) => {
+    if (err) return res.status(500).json({ status: 'error', message: err.message });
+
+    // destruyo la sesion en la base y limpio las cookies
+    req.session.destroy(() => {
+      res
+        .clearCookie('authToken', getClearCookieOptions())
+        .clearCookie('connect.sid')
+        .json({ status: 'success', message: 'sesion cerrada' });
+    });
+  });
+};
+
+module.exports = { register, login, githubCallback, logout };
