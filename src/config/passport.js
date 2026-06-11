@@ -1,9 +1,11 @@
 const passport = require('passport');
 const localStrategy = require('../strategies/local.strategy');
+const githubStrategy = require('../strategies/github.strategy');
 const User = require('../models/user.model');
 
 // registro las estrategias que va a usar passport
 passport.use('local', localStrategy);
+passport.use('github', githubStrategy);
 
 // en la sesion guardo solo el id del usuario
 passport.serializeUser((user, done) => {

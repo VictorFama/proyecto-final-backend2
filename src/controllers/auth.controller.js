@@ -48,4 +48,24 @@ const login = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = { register, login };
+// callback de github: cuando vuelve del login passport ya dejo el user en req.user
+// le genero el mismo jwt que en el login local asi puede usar las rutas protegidas
+const githubCallback = (req, res) => {
+  const token = createAccessToken(req.user);
+
+  res
+    .cookie('authToken', token, getAuthCookieOptions())
+    .json({
+      status: 'success',
+      message: 'login con github ok',
+      token,
+      user: {
+        id: req.user._id,
+        email: req.user.email,
+        role: req.user.role,
+        authProvider: req.user.authProvider,
+      },
+    });
+};
+
+module.exports = { register, login, githubCallback };
